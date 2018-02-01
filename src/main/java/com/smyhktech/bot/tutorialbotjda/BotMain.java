@@ -5,6 +5,8 @@
  */
 package com.smyhktech.bot.tutorialbotjda;
 
+import com.smyhktech.bot.tutorialbotjda.listeners.ReadyListener;
+import com.smyhktech.bot.tutorialbotjda.listeners.MessageReceivedListener;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -37,6 +39,7 @@ public class BotMain extends ListenerAdapter {
         String token = config.get(0);
         
         try {
+            
             JDA jda = new JDABuilder(AccountType.BOT)
                     .setToken(token)
                     .addEventListener(new ReadyListener())
@@ -44,6 +47,7 @@ public class BotMain extends ListenerAdapter {
             
             jda.addEventListener(new MessageReceivedListener());
             jda.getPresence().setGame(Game.playing("I'm a dickbot, suck it!"));
+            
         } catch (LoginException | InterruptedException ex) {
             Logger.getLogger(BotMain.class.getName()).log(Level.SEVERE, null, ex);
         }
