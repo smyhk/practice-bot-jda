@@ -12,6 +12,7 @@ import net.dv8tion.jda.core.entities.MessageChannel;
 import net.dv8tion.jda.core.entities.User;
 import net.dv8tion.jda.core.events.Event;
 import net.dv8tion.jda.core.events.guild.member.GuildMemberJoinEvent;
+import net.dv8tion.jda.core.events.guild.member.GuildMemberLeaveEvent;
 import net.dv8tion.jda.core.hooks.EventListener;
 
 /**
@@ -37,6 +38,18 @@ public class EventProcessor implements EventListener {
             channel = guild.getTextChannelById(353293437312958465L);
             
             String message = user.getAsMention() + " joined at: " + formattedDate;
+            channel.sendMessage(message).queue();
+        }
+        else if (event instanceof GuildMemberLeaveEvent) {
+            user = ((GuildMemberLeaveEvent) event).getUser();
+            
+            LocalDateTime leaveTime = LocalDateTime.now();
+            String formattedDate = formatter.format(leaveTime);
+            
+            guild = ((GuildMemberLeaveEvent) event).getGuild();
+            channel = guild.getTextChannelById(353293437312958465L);
+            
+            String message = user.getAsMention() + " left at: " + formattedDate;
             channel.sendMessage(message).queue();
         }
     }
