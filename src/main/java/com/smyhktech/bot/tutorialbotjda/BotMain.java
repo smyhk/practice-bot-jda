@@ -5,6 +5,7 @@
  */
 package com.smyhktech.bot.tutorialbotjda;
 
+import com.smyhktech.bot.tutorialbotjda.events.EventProcessor;
 import com.smyhktech.bot.tutorialbotjda.listeners.ReadyListener;
 import com.smyhktech.bot.tutorialbotjda.listeners.MessageReceivedListener;
 import java.io.IOException;
@@ -46,6 +47,7 @@ public class BotMain extends ListenerAdapter {
                     .buildBlocking();
             
             jda.addEventListener(new MessageReceivedListener());
+            jda.addEventListener(new EventProcessor());
             jda.getPresence().setGame(Game.playing("I'm a dickbot, suck it!"));
             
         } catch (LoginException | InterruptedException ex) {
