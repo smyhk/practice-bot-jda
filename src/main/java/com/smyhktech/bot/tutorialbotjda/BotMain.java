@@ -48,7 +48,7 @@ public class BotMain extends ListenerAdapter {
             
             jda.addEventListener(new MessageReceivedListener());
             jda.addEventListener(new EventProcessor());
-            jda.getPresence().setGame(Game.playing("I'm a dickbot, suck it!"));
+            jda.getPresence().setGame(Game.playing("God"));
             
         } catch (LoginException | InterruptedException ex) {
             Logger.getLogger(BotMain.class.getName()).log(Level.SEVERE, null, ex);
